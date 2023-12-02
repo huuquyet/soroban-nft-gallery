@@ -1,0 +1,23 @@
+[package]
+name = "mlh-contract"
+version.workspace = true
+edition.workspace = true
+pubish.workspace = true
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+soroban-sdk = { workspace = true, features = [] }
+erc721 = { workspace = true, default-features = false, features = ["metadata"] }
+storage.workspace = true
+
+[dev-dependencies]
+soroban-sdk = { workspace = true, features = ["testutils"] }
+
+[features]
+default = ["init", "prod"]
+init = []
+prod = []

@@ -1,22 +1,18 @@
 [package]
-name = "mlh-contract"
-version = "0.1.0"
-edition = "2021"
+name = "mlh-marketplace"
+version.workspace = true
+edition.workspace = true
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
 [lib]
 crate-type = ["cdylib"]
 
 [dependencies]
 soroban-sdk = { workspace = true, features = [] }
 erc721 = { workspace = true, default-features = false, features = ["metadata"] }
-storage = { workspace = true }
+storage.workspace = true
 
 [dev-dependencies]
 soroban-sdk = { workspace = true, features = ["testutils"] }
-
-
-[features]
-default = ["init", "prod"]
-init = []
-prod = []
+stellar-strkey = "0.0.7"

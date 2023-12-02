@@ -1,17 +1,22 @@
 [workspace]
 resolver = "2"
 members = [
-  "storage",
-  "erc721",
-  "mlh-contract",
-  "mlh-marketplace",
-  "erc721-example",
+  "soroban/storage",
+  "soroban/erc721",
+  "soroban/mlh-contract",
+  "soroban/mlh-marketplace",
+  "soroban/erc721-example",
 ]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+publish = false
 
 [workspace.dependencies]
 soroban-sdk = { version = "20.0.0-rc2", default-features = false }
-erc721 = { path = "./erc721", default-features = false }
-storage = { path = "./storage" }
+erc721 = { path = "./soroban/erc721", default-features = false }
+storage = { path = "./soroban/storage" }
 
 [profile.release]
 opt-level = "z"
@@ -22,3 +27,7 @@ debug-assertions = false
 panic = "abort"
 codegen-units = 1
 lto = true
+
+[profile.release-with-logs]
+inherits = "release"
+debug-assertions = true
