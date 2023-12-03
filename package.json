@@ -1,0 +1,14 @@
+{
+  "name": "soroban-nft-gallery",
+  "version": "0.1.0",
+  "workspaces": [
+    "mlh-frontend"
+  ],
+  "scripts": {
+    "clean": "git clean -xdf"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.2"
+  },
+  "packageManager": "yarn@4.0.2"
+}
