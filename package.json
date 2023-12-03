@@ -5,10 +5,14 @@
     "mlh-frontend"
   ],
   "scripts": {
-    "clean": "git clean -xdf"
+    "clean": "git clean -xdf",
+    "doctor": "yarn dlx @yarnpkg/doctor"
   },
   "devDependencies": {
     "typescript": "^5.3.2"
   },
-  "packageManager": "yarn@4.0.2"
+  "packageManager": "yarn@4.0.2",
+  "dependencies": {
+    "axios": "^1.6.2"
+  }
 }

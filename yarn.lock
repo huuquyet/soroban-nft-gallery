@@ -82,7 +82,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@astrojs/node@npm:^5.3.4":
+"@astrojs/node@npm:^5.3.6":
   version: 5.3.6
   resolution: "@astrojs/node@npm:5.3.6"
   dependencies:
@@ -1619,7 +1619,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stellar/freighter-api@npm:^1.6.0":
+"@stellar/freighter-api@npm:^1.7.1":
   version: 1.7.1
   resolution: "@stellar/freighter-api@npm:1.7.1"
   checksum: f18ac804a5efb29609e3b599b0ab715a008f3c67313a3e9521dc5796ab834d50d1e28c1a1a60fb30266578329eb5fc09c1c9692d448744dae26d5fc193242f34
@@ -2239,7 +2239,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"astro@npm:^2.10.1":
+"astro@npm:^2.10.15":
   version: 2.10.15
   resolution: "astro@npm:2.10.15"
   dependencies:
@@ -2326,7 +2326,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.4.0":
+"axios@npm:^1.6.0, axios@npm:^1.6.2":
   version: 1.6.2
   resolution: "axios@npm:1.6.2"
   dependencies:
@@ -5251,14 +5251,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "mlh-frontend@workspace:mlh-frontend"
   dependencies:
-    "@astrojs/node": "npm:^5.3.4"
+    "@astrojs/node": "npm:^5.3.6"
     "@nanostores/preact": "npm:^0.5.0"
-    "@stellar/freighter-api": "npm:^1.6.0"
-    astro: "npm:^2.10.1"
+    "@stellar/freighter-api": "npm:^1.7.1"
+    astro: "npm:^2.10.15"
     jimp: "npm:^0.22.10"
-    nanostores: "npm:^0.9.3"
-    soroban-client: "npm:1.0.0-beta.2"
-    stellar-wallets-kit: "github:Creit-Tech/Stellar-Wallets-Kit"
+    nanostores: "npm:^0.9.5"
+    soroban-client: "npm:1.0.0-beta.4"
+    stellar-wallets-kit: "https://github.com/Creit-Tech/Stellar-Wallets-Kit.git#commit=5163e0b6ff5d02e70e5acbfc6353f9a174339894"
   languageName: unknown
   linkType: soft
 
@@ -5318,7 +5318,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nanostores@npm:^0.9.3":
+"nanostores@npm:^0.9.5":
   version: 0.9.5
   resolution: "nanostores@npm:0.9.5"
   checksum: 5d6a33647428bd3adcd4ddb2745a01420eae3cc1c3c49e48c307b078152603a26ac78f25d30d17f3c4e51b43ee18e2fcd5b80a8c704336366cbcc86a5d5210b5
@@ -6567,16 +6567,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"soroban-client@npm:1.0.0-beta.2":
-  version: 1.0.0-beta.2
-  resolution: "soroban-client@npm:1.0.0-beta.2"
+"soroban-client@npm:1.0.0-beta.4":
+  version: 1.0.0-beta.4
+  resolution: "soroban-client@npm:1.0.0-beta.4"
   dependencies:
-    axios: "npm:^1.4.0"
+    axios: "npm:^1.6.0"
     bignumber.js: "npm:^9.1.1"
     buffer: "npm:^6.0.3"
-    stellar-base: "npm:v10.0.0-beta.1"
+    stellar-base: "npm:v10.0.0-beta.4"
     urijs: "npm:^1.19.1"
-  checksum: 70cbb5904855bac879af453ba1c55e456efebe942d3d63eb4715046fa9756a3fb1d25e4bf81ff0443f905ea7b502b6472fe217db314facde75a2c82a7bd544b1
+  checksum: cdcbcbea9bf42f1f1c1b2132af84ea9b67a4b6f1f843de59a7464162d27967a8910195e285ba02ed63ed8dbce70e36b1bfede9409bf677e8a8958ea1f704f80a
   languageName: node
   linkType: hard
 
@@ -6584,6 +6584,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "soroban-nft-gallery@workspace:."
   dependencies:
+    axios: "npm:^1.6.2"
     typescript: "npm:^5.3.2"
   languageName: unknown
   linkType: soft
@@ -6662,9 +6663,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stellar-base@npm:v10.0.0-beta.1":
-  version: 10.0.0-beta.1
-  resolution: "stellar-base@npm:10.0.0-beta.1"
+"stellar-base@npm:v10.0.0-beta.4":
+  version: 10.0.0-beta.4
+  resolution: "stellar-base@npm:10.0.0-beta.4"
   dependencies:
     base32.js: "npm:^0.1.0"
     bignumber.js: "npm:^9.1.2"
@@ -6676,11 +6677,11 @@ __metadata:
   dependenciesMeta:
     sodium-native:
       optional: true
-  checksum: b85b182a2c725a0430b5d153fdf4c4fce678bc7c54968b9735b0ec86231304506777fb20f3ab1ce47de28ab99d1e142be0f78864052bc50e3f62731e2c175476
+  checksum: ffcf7ab66c3b00f962d953aa8919f1becc23f382da95586af2bb7c185e5914c050c0ce6d7746b6bf770c0ffd812e20056913aa68986cb37067fb8015a207fc39
   languageName: node
   linkType: hard
 
-"stellar-wallets-kit@github:Creit-Tech/Stellar-Wallets-Kit":
+"stellar-wallets-kit@https://github.com/Creit-Tech/Stellar-Wallets-Kit.git#commit=5163e0b6ff5d02e70e5acbfc6353f9a174339894":
   version: 0.1.3
   resolution: "stellar-wallets-kit@https://github.com/Creit-Tech/Stellar-Wallets-Kit.git#commit=5163e0b6ff5d02e70e5acbfc6353f9a174339894"
   dependencies:

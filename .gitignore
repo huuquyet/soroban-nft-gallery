@@ -29,6 +29,7 @@ Cargo.lock
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+.yarn/install-state.gz
 
 # production
 /build
