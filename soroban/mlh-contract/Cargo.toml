@@ -2,7 +2,7 @@
 name = "mlh-contract"
 version.workspace = true
 edition.workspace = true
-pubish.workspace = true
+publish.workspace = true
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -10,7 +10,7 @@ pubish.workspace = true
 crate-type = ["cdylib"]
 
 [dependencies]
-soroban-sdk = { workspace = true, features = [] }
+soroban-sdk.workspace = true
 erc721 = { workspace = true, default-features = false, features = ["metadata"] }
 storage.workspace = true
 

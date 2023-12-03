@@ -1,4 +1,5 @@
-FROM gitpod/workspace-full:2023-10-03-17-29-28
+# You can find the new timestamped tags here: https://hub.docker.com/r/gitpod/workspace-full/tags
+FROM gitpod/workspace-full:2023-11-24-15-04-57
 
 RUN mkdir -p ~/.local/bin
 
