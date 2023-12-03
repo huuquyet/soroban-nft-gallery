@@ -25,8 +25,9 @@ RUN rustup self uninstall -y
 RUN rm -rf .rustup
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain none -y
 
-RUN rustup install 1.74 --component rust-src
+RUN rustup install 1.74
 RUN rustup target add --toolchain 1.74 wasm32-unknown-unknown
+RUN rustup component add --toolchain 1.74 rust-src
 RUN rustup default 1.74
 
 RUN sudo apt-get update && sudo apt-get install -y binaryen
