@@ -1718,6 +1718,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@stellar/stellar-sdk@npm:^11.1.0":
+  version: 11.1.0
+  resolution: "@stellar/stellar-sdk@npm:11.1.0"
+  dependencies:
+    "@stellar/stellar-base": "npm:10.0.1"
+    axios: "npm:^1.6.0"
+    bignumber.js: "npm:^9.1.2"
+    eventsource: "npm:^2.0.2"
+    randombytes: "npm:^2.1.0"
+    toml: "npm:^3.0.0"
+    urijs: "npm:^1.19.1"
+  checksum: d592e907e5221775b2291f60827fa2d79e990f6e9d3c015cd717960476d9e27833cc45c665ec078f72db3cc28edbcc6e4cf2c4e24016ec42cfd46102c70f7ccc
+  languageName: node
+  linkType: hard
+
 "@tokenizer/token@npm:^0.3.0":
   version: 0.3.0
   resolution: "@tokenizer/token@npm:0.3.0"
@@ -5327,10 +5342,10 @@ __metadata:
     "@astrojs/node": "npm:^7.0.4"
     "@nanostores/preact": "npm:^0.5.0"
     "@stellar/freighter-api": "npm:^1.7.1"
+    "@stellar/stellar-sdk": "npm:^11.1.0"
     astro: "npm:^4.1.1"
     jimp: "npm:^0.22.10"
     nanostores: "npm:^0.9.5"
-    stellar-sdk: "npm:^11.1.0"
     stellar-wallets-kit: "https://github.com/Creit-Tech/Stellar-Wallets-Kit.git#commit=5163e0b6ff5d02e70e5acbfc6353f9a174339894"
   languageName: unknown
   linkType: soft
@@ -6825,21 +6840,6 @@ __metadata:
   dependencies:
     bl: "npm:^5.0.0"
   checksum: 3bbf7f8107e49c05b4a46bd739afdd34605cf1f06a038c8b2a33d034bf146344fc0ebc5149df1e6422510dd219971a220f25b1102413ef5128fe267683fbef9d
-  languageName: node
-  linkType: hard
-
-"stellar-sdk@npm:^11.1.0":
-  version: 11.1.0
-  resolution: "stellar-sdk@npm:11.1.0"
-  dependencies:
-    "@stellar/stellar-base": "npm:10.0.1"
-    axios: "npm:^1.6.0"
-    bignumber.js: "npm:^9.1.2"
-    eventsource: "npm:^2.0.2"
-    randombytes: "npm:^2.1.0"
-    toml: "npm:^3.0.0"
-    urijs: "npm:^1.19.1"
-  checksum: 07718ead15a496a589281ee8e9575486f5f2152fd3408f97800961955ede5aeefc10a7192dddaf14e9b6a5a3bde69cb31796beacd0d8c4d5f93af5b4e5cd2aaa
   languageName: node
   linkType: hard
 

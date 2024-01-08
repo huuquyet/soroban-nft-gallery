@@ -1,6 +1,6 @@
 import * as million from "Million";
 import { promises as fs } from "node:fs";
-import { verify, Keypair } from "stellar-sdk";
+import { verify, Keypair } from "@stellar/stellar-sdk";
 
 const FakeWallet = {
   isConnected: function () {

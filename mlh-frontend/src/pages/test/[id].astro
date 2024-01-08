@@ -105,7 +105,7 @@ label, button {
 </style>
 <script>
 import {getUserInfo, signBlob, signTransaction} from '@stellar/freighter-api';
-import {Keypair} from 'stellar-sdk';
+import {Keypair} from '@stellar/stellar-sdk';
 
 const {publicKey}= await getUserInfo();
 const owner = document.querySelector("#owner").value;
