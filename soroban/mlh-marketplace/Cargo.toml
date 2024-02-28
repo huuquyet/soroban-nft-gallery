@@ -16,4 +16,4 @@ storage.workspace = true
 
 [dev-dependencies]
 soroban-sdk = { workspace = true, features = ["testutils"] }
-stellar-strkey = "0.0.7"
+stellar-strkey = "0.0.8"
