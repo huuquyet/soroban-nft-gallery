@@ -18,5 +18,8 @@
     "jimp": "^0.22.10",
     "nanostores": "^0.9.5",
     "stellar-wallets-kit": "https://github.com/Creit-Tech/Stellar-Wallets-Kit.git#commit=5163e0b6ff5d02e70e5acbfc6353f9a174339894"
+  },
+  "devDependencies": {
+    "preact": "^10.19.6"
   }
 }
