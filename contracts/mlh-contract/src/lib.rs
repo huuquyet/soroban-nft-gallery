@@ -28,8 +28,8 @@ pub struct Million;
 #[contractimpl]
 impl Million {
     pub fn initialize(env: Env, admin: Address, asset: Address, price: i128) {
-        let name = String::from_slice(&env, "Pixel");
-        let sym = String::from_slice(&env, "PIX");
+        let name = String::from_str(&env, "Pixel");
+        let sym = String::from_str(&env, "PIX");
         MillionDataKey::TokenId
             .bump(&env, MIN_BUMP, MAX_BUMP)
             .set::<u32>(&env, &0);
@@ -166,7 +166,7 @@ impl Million {
             uri.copy_into_slice(&mut slice);
             let struri = core::str::from_utf8(slice.as_slice()).unwrap();
 
-            String::from_slice(&env, struri)
+            String::from_str(&env, struri)
         } else {
             panic_with_error!(&env, Error::NotNFT);
         }

@@ -167,7 +167,7 @@ impl ERC721Metadata for ERC721Contract {
     fn token_uri(env: Env, token_id: u32) -> String {
         DatakeyMetadata::Uri(token_id)
             .get(&env)
-            .unwrap_or_else(|| String::from_slice(&env, "no uri"))
+            .unwrap_or_else(|| String::from_str(&env, "no uri"))
     }
 }
 
@@ -263,7 +263,7 @@ impl ERC721Contract {
         }
         Admin::User.set(&env, &admin);
 
-        env.storage().instance().bump(10000, 100000);
+        env.storage().instance().extend_ttl(10000, 100000);
         if cfg!(feature = "metadata") {
             env.storage().instance().set(&DatakeyMetadata::Name, &name);
             env.storage()

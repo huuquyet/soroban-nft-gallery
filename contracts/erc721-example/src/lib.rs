@@ -17,8 +17,8 @@ pub struct MyNFTCollection;
 #[contractimpl]
 impl MyNFTCollection {
     pub fn initialize(env: Env, admin: Address) {
-        let name = String::from_slice(&env, "Non-Fungible Token");
-        let sym = String::from_slice(&env, "NFT");
+        let name = String::from_str(&env, "Non-Fungible Token");
+        let sym = String::from_str(&env, "NFT");
         erc721::ERC721Contract::initialize(env, admin, name, sym);
     }
 

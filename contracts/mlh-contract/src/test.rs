@@ -12,14 +12,14 @@ fn init() {
     let contract_id = env.register_contract(None, Million);
     let client = MillionClient::new(&env, &contract_id);
 
-    let asset_admin = Address::random(&env);
+    let asset_admin = Address::generate(&env);
     let native_addr = env.register_stellar_asset_contract(asset_admin);
 
-    let admin = Address::random(&env);
+    let admin = Address::generate(&env);
     client.initialize(&admin, &native_addr, &100);
 
-    assert_eq!(client.name(), String::from_slice(&env, "Pixel"));
-    assert_eq!(client.symbol(), String::from_slice(&env, "PIX"));
+    assert_eq!(client.name(), String::from_str(&env, "Pixel"));
+    assert_eq!(client.symbol(), String::from_str(&env, "PIX"));
 }
 
 #[test]
@@ -28,17 +28,17 @@ fn mint() {
     let contract_id = env.register_contract(None, Million);
     let client = MillionClient::new(&env, &contract_id);
 
-    let asset_admin = Address::random(&env);
+    let asset_admin = Address::generate(&env);
     let native_addr = env.register_stellar_asset_contract(asset_admin.clone());
     let asset_client_admin = token::AdminClient::new(&env, &native_addr);
 
-    let admin = Address::random(&env);
+    let admin = Address::generate(&env);
     client.initialize(&admin, &native_addr, &2_560_000_000);
 
-    assert_eq!(client.name(), String::from_slice(&env, "Pixel"));
-    assert_eq!(client.symbol(), String::from_slice(&env, "PIX"));
+    assert_eq!(client.name(), String::from_str(&env, "Pixel"));
+    assert_eq!(client.symbol(), String::from_str(&env, "PIX"));
 
-    let user1 = Address::random(&env);
+    let user1 = Address::generate(&env);
     asset_client_admin
         .mock_all_auths()
         .mint(&user1, &2_560_000_000);
@@ -49,7 +49,7 @@ fn mint() {
     }
 
     //std::println!("{:?}", r1);
-    let user2 = Address::random(&env);
+    let user2 = Address::generate(&env);
     asset_client_admin
         .mock_all_auths()
         .mint(&user2, &2_560_000_000);
@@ -74,16 +74,16 @@ fn mint_all() {
     let contract_id = env.register_contract(None, Million);
     let client = MillionClient::new(&env, &contract_id);
 
-    let asset_admin = Address::random(&env);
+    let asset_admin = Address::generate(&env);
     let native_addr = env.register_stellar_asset_contract(asset_admin.clone());
     let asset_client_admin = token::AdminClient::new(&env, &native_addr);
 
-    let admin = Address::random(&env);
+    let admin = Address::generate(&env);
     client.initialize(&admin, &native_addr, &2_560_000_000);
 
     env.budget().reset_unlimited();
     for i in 0..max {
-        let user1 = Address::random(&env);
+        let user1 = Address::generate(&env);
         asset_client_admin
             .mock_all_auths()
             .mint(&user1, &2_560_000_000);
@@ -100,7 +100,7 @@ fn mint_all() {
     }
 
     assert_eq!(client.total_supply(), max);
-    let user1 = Address::random(&env);
+    let user1 = Address::generate(&env);
     asset_client_admin
         .mock_all_auths()
         .mint(&user1, &2_560_000_000);

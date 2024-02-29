@@ -71,7 +71,7 @@ impl MarketPlace {
             panic!("Already initialized");
         }
         env.storage().instance().set(&CONTRACT, &contract);
-        env.storage().instance().bump(MIN_BUMP, MAX_BUMP);
+        env.storage().instance().extend_ttl(MIN_BUMP, MAX_BUMP);
     }
     pub fn sell(
         env: Env,
@@ -113,12 +113,12 @@ impl MarketPlace {
         env.storage().temporary().set(&ORDER_BOOK, &order_book);
         env.storage()
             .temporary()
-            .bump(&ORDER_BOOK, expiration_ledger - env.ledger().sequence(), expiration_ledger);
+            .extend_ttl(&ORDER_BOOK, expiration_ledger - env.ledger().sequence(), expiration_ledger);
 
         env.storage().temporary().set(&nft, &price);
         env.storage()
             .temporary()
-            .bump(&nft, expiration_ledger - env.ledger().sequence(), expiration_ledger);
+            .extend_ttl(&nft, expiration_ledger - env.ledger().sequence(), expiration_ledger);
     }
     pub fn buy(env: Env, buyer: Address, nft: Nft) {
         buyer.require_auth();

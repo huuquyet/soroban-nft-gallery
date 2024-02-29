@@ -22,13 +22,13 @@ impl Instance {
         env.storage().instance().has(key)
     }
     pub fn bump(env: &Env, min_ledger_to_live: u32, max_ledger_to_live: u32) {
-        env.storage().instance().bump(min_ledger_to_live, max_ledger_to_live)
+        env.storage().instance().extend_ttl(min_ledger_to_live, max_ledger_to_live)
     }
     pub fn bump_until(env: &Env, expiration_ledger: u32) {
         let live_for = expiration_ledger
             .checked_sub(env.ledger().sequence())
             .unwrap();
-        env.storage().instance().bump(live_for, live_for)
+        env.storage().instance().extend_ttl(live_for, live_for)
     }
     pub fn remove<K: IntoVal<Env, Val>>(env: &Env, key: &K) {
         env.storage().instance().remove(key);
@@ -47,13 +47,13 @@ impl Persistent {
         env.storage().persistent().has(key)
     }
     pub fn bump<K: IntoVal<Env, Val>>(env: &Env, key: &K, min_ledger_to_live: u32, max_ledger_to_live: u32) {
-        env.storage().persistent().bump(key, min_ledger_to_live, max_ledger_to_live)
+        env.storage().persistent().extend_ttl(key, min_ledger_to_live, max_ledger_to_live)
     }
     pub fn bump_until<K: IntoVal<Env, Val>>(env: &Env, key: &K, expiration_ledger: u32) {
         let live_for = expiration_ledger
             .checked_sub(env.ledger().sequence())
             .unwrap();
-        env.storage().persistent().bump(key, live_for, live_for)
+        env.storage().persistent().extend_ttl(key, live_for, live_for)
     }
     pub fn remove<K: IntoVal<Env, Val>>(env: &Env, key: &K) {
         env.storage().persistent().remove(key);
@@ -72,13 +72,13 @@ impl Temporary {
         env.storage().temporary().has(key)
     }
     pub fn bump<K: IntoVal<Env, Val>>(env: &Env, key: &K, min_ledger_to_live: u32, max_ledger_to_live: u32) {
-        env.storage().temporary().bump(key, min_ledger_to_live, max_ledger_to_live)
+        env.storage().temporary().extend_ttl(key, min_ledger_to_live, max_ledger_to_live)
     }
     pub fn bump_until<K: IntoVal<Env, Val>>(env: &Env, key: &K, expiration_ledger: u32) {
         let live_for = expiration_ledger
             .checked_sub(env.ledger().sequence())
             .unwrap();
-        env.storage().temporary().bump(key, live_for, live_for)
+        env.storage().temporary().extend_ttl(key, live_for, live_for)
     }
     pub fn remove<K: IntoVal<Env, Val>>(env: &Env, key: &K) {
         env.storage().temporary().remove(key);

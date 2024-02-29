@@ -11,18 +11,18 @@ fn simpl_test() {
     let contract_id = env.register_contract(None, ERC721Contract);
     let client = ERC721ContractClient::new(&env, &contract_id);
 
-    let admin = Address::random(&env);
+    let admin = Address::generate(&env);
     client.initialize(
         &admin,
-        &String::from_slice(&env, "Cool NFT"),
-        &String::from_slice(&env, "COOL"),
+        &String::from_str(&env, "Cool NFT"),
+        &String::from_str(&env, "COOL"),
     );
 
-    let user1 = Address::random(&env);
+    let user1 = Address::generate(&env);
     client.mock_all_auths().mint(&user1, &1);
     assert_eq!(client.balance_of(&user1), 1);
 
-    let user2 = Address::random(&env);
+    let user2 = Address::generate(&env);
     client.mock_all_auths().mint(&user2, &2);
     assert_eq!(client.balance_of(&user2), 1);
 
