@@ -2,23 +2,13 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - name: Testnet
-    init: |
-      docker pull stellar/quickstart:testing@sha256:40636cdb1b9168b47e5dc120949fe3610ff914e8dd43409edb6fa66496bdd9c3
-    command: |
-      docker run --rm -it \
-      -p 8000:8000 \
-      --name stellar \
-      stellar/quickstart:testing@sha256:40636cdb1b9168b47e5dc120949fe3610ff914e8dd43409edb6fa66496bdd9c3 \
-      --testnet \
-      --enable-soroban-rpc
   - name: Futurenet
     init: |
       docker pull stellar/quickstart:soroban-dev
     command: |
       docker run --rm -it \
       --name stellar \
-      -p 8001:8001 \
+      -p 8000:8000 \
       stellar/quickstart:soroban-dev \
       --futurenet \
       --enable-soroban-rpc
@@ -28,25 +18,24 @@ tasks:
     # We specify some required environment variables for use on the testnet.
     env:
       # This can be set by the user, but this terminal is dedicated to futurenet so set for convenience.
-      SOROBAN_RPC_URL: "https://soroban-testnet.stellar.org:443/"
+      SOROBAN_RPC_URL: "https://soroban-testnet.stellar.org/"
       SOROBAN_NETWORK_PASSPHRASE: "Test SDF Network ; September 2015"
     # To keep things tidy, we clear the terminal from the previous output.
     command: |
       clear
   - name: CLI - Futurenet
     env:
-      SOROBAN_RPC_URL: "https://futurenet.rpciege.com/"
+      SOROBAN_RPC_URL: "https://rpc-futurenet.stellar.org/"
       SOROBAN_NETWORK_PASSPHRASE: "Test SDF Future Network ; October 2022"
     command: |
       clear
   - name: CLI - Sandbox
     init: |
-      cargo clean
-      cargo fetch
-      cargo build --target wasm32-unknown-unknown --release
-      cargo test -- --nocapture
+      chmod +x ./initialize.sh
     command: |
+      npm run setup
       gp open README.md
+      yarn dev
       clear
 
 vscode:
@@ -57,12 +46,8 @@ vscode:
 ports:
   # Your quickstart node has a Horizon API server and an RPC endpoint, both
   # listening on port 8000. It's publicly accessible through the internet.
-  - name: Testnet
-    port: 8000
-    visibility: public
-    onOpen: ignore
   - name: Futurenet
-    port: 8001
+    port: 8000
     visibility: public
     onOpen: ignore
   # This port is open for "Something with cargo test I think"??

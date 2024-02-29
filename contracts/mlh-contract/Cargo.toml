@@ -1,5 +1,5 @@
 [package]
-name = "mlh-contract"
+name = "soroban-mlh-contract"
 version.workspace = true
 edition.workspace = true
 publish.workspace = true
@@ -10,9 +10,9 @@ publish.workspace = true
 crate-type = ["cdylib"]
 
 [dependencies]
-soroban-sdk.workspace = true
+soroban-sdk = { workspace = true }
 erc721 = { workspace = true, default-features = false, features = ["metadata"] }
-storage.workspace = true
+storage = { workspace = true }
 
 [dev-dependencies]
 soroban-sdk = { workspace = true, features = ["testutils"] }

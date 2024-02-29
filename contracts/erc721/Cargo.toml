@@ -1,5 +1,5 @@
 [package]
-name = "erc721"
+name = "soroban-erc721-contract"
 version.workspace = true
 edition.workspace = true
 publish.workspace = true
@@ -11,8 +11,8 @@ name = "erc721"
 path = "./src/lib.rs"
 
 [dependencies]
-soroban-sdk.workspace = true
-storage.workspace = true
+soroban-sdk = { workspace = true }
+storage = { workspace = true }
 
 [dev-dependencies]
 soroban-sdk = { workspace = true, features = ["testutils"] }

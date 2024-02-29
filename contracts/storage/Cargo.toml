@@ -1,5 +1,5 @@
 [package]
-name = "storage"
+name = "soroban-storage-contract"
 version.workspace = true
 edition.workspace = true
 publish.workspace = true
@@ -11,4 +11,4 @@ name = "storage"
 path = "./src/lib.rs"
 
 [dependencies]
-soroban-sdk.workspace = true
+soroban-sdk = { workspace = true }

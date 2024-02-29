@@ -88,7 +88,9 @@ impl Million {
         Coords::Token(x, y)
             .bump(&env, MIN_BUMP, MAX_BUMP)
             .set(&env, &token_id);
-        Coords::Xy(token_id).bump(&env, MIN_BUMP, MAX_BUMP).set(&env, &(x, y));
+        Coords::Xy(token_id)
+            .bump(&env, MIN_BUMP, MAX_BUMP)
+            .set(&env, &(x, y));
 
         // Mint
         erc721::ERC721Contract::mint(env.clone(), to.clone(), token_id);

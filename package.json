@@ -6,7 +6,10 @@
   ],
   "scripts": {
     "clean": "cargo clean && yarn cache clean && git clean -xdf",
+    "dev": "yarn workspace mlh-frontend run dev",
     "doctor": "yarn dlx @yarnpkg/doctor",
+    "reset": "yarn clean && npm run setup",
+    "setup": "./initialize.sh ${NETWORK:-futurenet} && yarn install",
     "update": "yarn upgrade-interactive",
     "vscode": "yarn dlx @yarnpkg/sdks vscode"
   },

@@ -1,4 +1,4 @@
-import * as million from "Million";
+import * as million from "million-contract";
 
 export async function get({ params, request }) {
   const FakeWallet = {

@@ -1,4 +1,4 @@
-import * as million from "Million";
+import * as million from "million-contract";
 import Jimp from "jimp";
 import { promises as fs } from "node:fs";
 import { x } from "../keyStore.ts";

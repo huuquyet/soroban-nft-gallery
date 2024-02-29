@@ -111,14 +111,18 @@ impl MarketPlace {
             .unwrap_or_else(|| Map::new(&env));
         order_book.set(nft.clone(), owner);
         env.storage().temporary().set(&ORDER_BOOK, &order_book);
-        env.storage()
-            .temporary()
-            .extend_ttl(&ORDER_BOOK, expiration_ledger - env.ledger().sequence(), expiration_ledger);
+        env.storage().temporary().extend_ttl(
+            &ORDER_BOOK,
+            expiration_ledger - env.ledger().sequence(),
+            expiration_ledger,
+        );
 
         env.storage().temporary().set(&nft, &price);
-        env.storage()
-            .temporary()
-            .extend_ttl(&nft, expiration_ledger - env.ledger().sequence(), expiration_ledger);
+        env.storage().temporary().extend_ttl(
+            &nft,
+            expiration_ledger - env.ledger().sequence(),
+            expiration_ledger,
+        );
     }
     pub fn buy(env: Env, buyer: Address, nft: Nft) {
         buyer.require_auth();

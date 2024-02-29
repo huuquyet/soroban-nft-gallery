@@ -3,9 +3,9 @@ resolver = "2"
 members = [
   "contracts/storage",
   "contracts/erc721",
+  "contracts/erc721-example",
   "contracts/mlh-contract",
   "contracts/mlh-marketplace",
-  "contracts/erc721-example",
 ]
 
 [workspace.package]
