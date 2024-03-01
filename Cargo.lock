@@ -398,14 +398,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "erc721-example"
-version = "0.1.0"
-dependencies = [
- "erc721",
- "soroban-sdk",
-]
-
-[[package]]
 name = "escape-bytes"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -651,25 +643,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9d811f3e15f28568be3407c8e7fdb6514c1cda3cb30683f15b6a1a1dc4ea14a7"
 dependencies = [
  "adler",
-]
-
-[[package]]
-name = "mlh-contract"
-version = "0.1.0"
-dependencies = [
- "erc721",
- "soroban-sdk",
- "storage",
-]
-
-[[package]]
-name = "mlh-marketplace"
-version = "0.1.0"
-dependencies = [
- "erc721",
- "soroban-sdk",
- "stellar-strkey",
- "storage",
 ]
 
 [[package]]
@@ -1058,6 +1031,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "soroban-erc721-example"
+version = "0.1.0"
+dependencies = [
+ "erc721",
+ "soroban-sdk",
+]
+
+[[package]]
 name = "soroban-ledger-snapshot"
 version = "20.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1069,6 +1050,24 @@ dependencies = [
  "soroban-env-common",
  "soroban-env-host",
  "thiserror",
+]
+
+[[package]]
+name = "soroban-mlh-contract"
+version = "0.1.0"
+dependencies = [
+ "erc721",
+ "soroban-sdk",
+ "storage",
+]
+
+[[package]]
+name = "soroban-mlh-marketplace"
+version = "0.1.0"
+dependencies = [
+ "erc721",
+ "soroban-sdk",
+ "storage",
 ]
 
 [[package]]

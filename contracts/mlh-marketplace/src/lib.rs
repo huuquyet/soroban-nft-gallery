@@ -159,14 +159,3 @@ impl MarketPlace {
         }
     }
 }
-
-#[cfg(test)]
-mod tests {
-    use soroban_sdk::{xdr::Asset, Address, BytesN, Env};
-    use stellar_strkey::Strkey;
-
-    fn test() {
-        //
-        let env = Env::default();
-    }
-}

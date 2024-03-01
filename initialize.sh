@@ -68,11 +68,16 @@ if !(soroban config identity ls | grep token-admin 2>&1 >/dev/null); then
   echo "Create the token-admin identity"
   soroban config identity generate token-admin --network $NETWORK
 fi
-ADMIN_ADDRESS="$(soroban config identity address token-admin)"
+
+if !(soroban config identity ls | grep user 2>&1 >/dev/null); then
+  echo "Create the user identity"
+  soroban config identity generate user --network $NETWORK
+fi
 
 # This will fail if the account already exists, but it'll still be fine.
-echo "Fund token-admin account from friendbot"
+echo "Fund token-admin & user accounts from friendbot"
 soroban config identity fund token-admin --network $NETWORK
+soroban config identity fund user --network $NETWORK
 
 ARGS="--network $NETWORK --source token-admin"
 
@@ -107,7 +112,7 @@ MLH_HASH="$(
 )"
 
 # Initialize the contracts
-echo "Initializing the mlh contract $MLH_ID"
+echo "Initializing the mlh contract"
 soroban contract invoke \
 	$ARGS \
 	--id $MLH_ID \
@@ -118,26 +123,16 @@ soroban contract invoke \
 	--price 2560000000
 
 # Upgrading the contracts
-echo "Upgrading the mlh contract"
-soroban contract invoke 
-	$ARGS \
-	--id $MLH_ID \
-	-- \
-	upgrade \
-	--wasm_hash $MLH_HASH
+# echo "Upgrading the mlh contract"
+# soroban contract invoke $ARGS --id $MLH_ID -- upgrade --wasm_hash $MLH_HASH
 
 # Contract total supply
 TOTAL_SUPPLY="$(soroban contract invoke $ARGS --id $MLH_ID -- total_supply)"
 echo "Total supply of mlh contract is $TOTAL_SUPPLY"
 
 # Minting to token admin
-echo "Minting to token admin"
-soroban contract invoke \
-	$ARGS \
-	--id $MLH_ID \
-	-- \
-	mint \
-	--to token-admin
+# echo "Minting to user"
+# soroban contract invoke --network $NETWORK --source user --id $MLH_ID -- mint --to user --x 0 --y 0
 
 # Extending the contracts
 echo "Extending the mlh contract"

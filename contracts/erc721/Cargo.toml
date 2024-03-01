@@ -1,5 +1,5 @@
 [package]
-name = "soroban-erc721-contract"
+name = "erc721"
 version.workspace = true
 edition.workspace = true
 publish.workspace = true
