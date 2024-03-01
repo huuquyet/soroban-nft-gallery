@@ -1,4 +1,4 @@
-use soroban_sdk::{contracttype, Env};
+use soroban_sdk::{contracttype, Env, IntoVal, TryFromVal, Val};
 #[contracttype]
 pub enum MillionDataKey {
     TokenId,
@@ -6,11 +6,11 @@ pub enum MillionDataKey {
     Price,
 }
 impl storage::Storage for MillionDataKey {
-    fn get<V: soroban_sdk::TryFromVal<Env, soroban_sdk::Val>>(&self, env: &Env) -> Option<V> {
+    fn get<V: TryFromVal<Env, Val>>(&self, env: &Env) -> Option<V> {
         storage::Instance::get(env, self)
     }
 
-    fn set<V: soroban_sdk::IntoVal<Env, soroban_sdk::Val>>(&self, env: &Env, val: &V) {
+    fn set<V: IntoVal<Env, Val>>(&self, env: &Env, val: &V) {
         storage::Instance::set(env, self, val)
     }
 
@@ -38,11 +38,11 @@ pub enum Coords {
     Xy(u32),
 }
 impl storage::Storage for Coords {
-    fn get<V: soroban_sdk::TryFromVal<Env, soroban_sdk::Val>>(&self, env: &Env) -> Option<V> {
+    fn get<V: TryFromVal<Env, Val>>(&self, env: &Env) -> Option<V> {
         storage::Persistent::get(env, self)
     }
 
-    fn set<V: soroban_sdk::IntoVal<Env, soroban_sdk::Val>>(&self, env: &Env, val: &V) {
+    fn set<V: IntoVal<Env, Val>>(&self, env: &Env, val: &V) {
         storage::Persistent::set(env, self, val)
     }
 

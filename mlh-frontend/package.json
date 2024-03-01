@@ -16,7 +16,7 @@
     "@stellar/stellar-sdk": "^11.1.0",
     "astro": "^4.1.1",
     "jimp": "^0.22.10",
-    "million-contract": "./soroban/contracts/million",
+    "million-contract": "../.soroban/contracts/million",
     "nanostores": "^0.9.5",
     "stellar-wallets-kit": "https://github.com/Creit-Tech/Stellar-Wallets-Kit.git#commit=5163e0b6ff5d02e70e5acbfc6353f9a174339894"
   },

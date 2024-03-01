@@ -139,7 +139,7 @@ echo "Extending the mlh contract"
 soroban contract extend \
 	$ARGS \
 	--id $MLH_ID \
-	--ledgers-to-expire 6000000 \
+	--ledgers-to-extend 6000000 \
 	--durability persistent
 
 #soroban contract invoke $ARGS --id $MLH_ID -- -h

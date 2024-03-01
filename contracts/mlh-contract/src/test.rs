@@ -5,7 +5,7 @@ use std::println;
 
 use super::*;
 //use crate::MillionError;
-use soroban_sdk::{testutils::Address as _, Address, Env};
+use soroban_sdk::{testutils::Address as _, token, Address, Env};
 #[test]
 fn init() {
     let env = Env::default();

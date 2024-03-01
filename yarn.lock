@@ -1489,17 +1489,35 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stellar/freighter-api@npm:^1.7.1":
+"@stellar/freighter-api@npm:1.7.1, @stellar/freighter-api@npm:^1.7.1":
   version: 1.7.1
   resolution: "@stellar/freighter-api@npm:1.7.1"
   checksum: 10c0/f18ac804a5efb29609e3b599b0ab715a008f3c67313a3e9521dc5796ab834d50d1e28c1a1a60fb30266578329eb5fc09c1c9692d448744dae26d5fc193242f34
   languageName: node
   linkType: hard
 
-"@stellar/js-xdr@npm:^3.1.0":
+"@stellar/js-xdr@npm:^3.0.1, @stellar/js-xdr@npm:^3.1.0":
   version: 3.1.0
   resolution: "@stellar/js-xdr@npm:3.1.0"
   checksum: 10c0/1b483355e42fe0e982fd46e1652c3cad85747061f2a950b95f0ea929ade6107e24755d0a96dad6e47a6f24549a6b6689f34a133914b2334ef634dc81734f36c4
+  languageName: node
+  linkType: hard
+
+"@stellar/stellar-base@npm:10.0.1":
+  version: 10.0.1
+  resolution: "@stellar/stellar-base@npm:10.0.1"
+  dependencies:
+    "@stellar/js-xdr": "npm:^3.0.1"
+    base32.js: "npm:^0.1.0"
+    bignumber.js: "npm:^9.1.2"
+    buffer: "npm:^6.0.3"
+    sha.js: "npm:^2.3.6"
+    sodium-native: "npm:^4.0.1"
+    tweetnacl: "npm:^1.0.3"
+  dependenciesMeta:
+    sodium-native:
+      optional: true
+  checksum: 10c0/37d7f3594830e4e91693fa8b5b0b17ee0081a282711e63d6e6e29f8f6b321db419fada65f923fdc1b06f5f246b8cfb5c27ef54866ae0fb746c71b6f35e214174
   languageName: node
   linkType: hard
 
@@ -1519,6 +1537,21 @@ __metadata:
     sodium-native:
       optional: true
   checksum: 10c0/0d984ee36d2998a2850dce177f5c962f09ea2d8b0ef3c20b0cf62711eaee855b40dc8a37b369b43a787bbdcd766d703cbbe5eb137b0fe96d9483492fbcea3b97
+  languageName: node
+  linkType: hard
+
+"@stellar/stellar-sdk@npm:11.2.0":
+  version: 11.2.0
+  resolution: "@stellar/stellar-sdk@npm:11.2.0"
+  dependencies:
+    "@stellar/stellar-base": "npm:10.0.1"
+    axios: "npm:^1.6.5"
+    bignumber.js: "npm:^9.1.2"
+    eventsource: "npm:^2.0.2"
+    randombytes: "npm:^2.1.0"
+    toml: "npm:^3.0.0"
+    urijs: "npm:^1.19.1"
+  checksum: 10c0/a3470cd18276d8007a39bd2706cb5d8000bb16000635dd34f7e35a09ba2c7248a6d8250ec0c3c309cbdc82d40e318a8f851962c6b6d033abdb9f5c01e96e943c
   languageName: node
   linkType: hard
 
@@ -2431,6 +2464,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"buffer@npm:6.0.3, buffer@npm:^6.0.3":
+  version: 6.0.3
+  resolution: "buffer@npm:6.0.3"
+  dependencies:
+    base64-js: "npm:^1.3.1"
+    ieee754: "npm:^1.2.1"
+  checksum: 10c0/2a905fbbcde73cc5d8bd18d1caa23715d5f83a5935867c2329f0ac06104204ba7947be098fe1317fbd8830e26090ff8e764f08cd14fefc977bb248c3487bcbd0
+  languageName: node
+  linkType: hard
+
 "buffer@npm:^5.2.0, buffer@npm:^5.4.3, buffer@npm:^5.5.0":
   version: 5.7.1
   resolution: "buffer@npm:5.7.1"
@@ -2438,16 +2481,6 @@ __metadata:
     base64-js: "npm:^1.3.1"
     ieee754: "npm:^1.1.13"
   checksum: 10c0/27cac81cff434ed2876058d72e7c4789d11ff1120ef32c9de48f59eab58179b66710c488987d295ae89a228f835fc66d088652dffeb8e3ba8659f80eb091d55e
-  languageName: node
-  linkType: hard
-
-"buffer@npm:^6.0.3":
-  version: 6.0.3
-  resolution: "buffer@npm:6.0.3"
-  dependencies:
-    base64-js: "npm:^1.3.1"
-    ieee754: "npm:^1.2.1"
-  checksum: 10c0/2a905fbbcde73cc5d8bd18d1caa23715d5f83a5935867c2329f0ac06104204ba7947be098fe1317fbd8830e26090ff8e764f08cd14fefc977bb248c3487bcbd0
   languageName: node
   linkType: hard
 
@@ -5046,6 +5079,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"million-contract@file:../.soroban/contracts/million::locator=mlh-frontend%40workspace%3Amlh-frontend":
+  version: 0.0.0
+  resolution: "million-contract@file:../.soroban/contracts/million#../.soroban/contracts/million::hash=ccede2&locator=mlh-frontend%40workspace%3Amlh-frontend"
+  dependencies:
+    "@stellar/freighter-api": "npm:1.7.1"
+    "@stellar/stellar-sdk": "npm:11.2.0"
+    buffer: "npm:6.0.3"
+  checksum: 10c0/75ed150b7cb7323c0d22d2307f4c86c5a21f61b8dbe123be8706fddd535a31f9a9685f8129c1652ff827bf27d566d1af6a645b6d02362c58f78cb6ea377ea7e3
+  languageName: node
+  linkType: hard
+
 "mime-db@npm:1.52.0":
   version: 1.52.0
   resolution: "mime-db@npm:1.52.0"
@@ -5236,6 +5280,7 @@ __metadata:
     "@stellar/stellar-sdk": "npm:^11.1.0"
     astro: "npm:^4.1.1"
     jimp: "npm:^0.22.10"
+    million-contract: ../.soroban/contracts/million
     nanostores: "npm:^0.9.5"
     preact: "npm:^10.19.6"
     stellar-wallets-kit: "https://github.com/Creit-Tech/Stellar-Wallets-Kit.git#commit=5163e0b6ff5d02e70e5acbfc6353f9a174339894"
@@ -6665,7 +6710,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sodium-native@npm:^4.0.8":
+"sodium-native@npm:^4.0.1, sodium-native@npm:^4.0.8":
   version: 4.0.10
   resolution: "sodium-native@npm:4.0.10"
   dependencies:
