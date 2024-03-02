@@ -161,4 +161,8 @@ soroban contract bindings typescript \
 	--output-dir ./.soroban/contracts/million \
 	--overwrite
 
+# Create data folder
+rm -r data
+mkdir data
+
 echo "Done"

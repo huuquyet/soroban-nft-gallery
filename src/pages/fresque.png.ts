@@ -18,7 +18,7 @@ export async function get({ params, request }) {
   } else {
     console.log("from cache");
     //fresque = await update();
-    fresque = await Jimp.read("./data/data-fresque.png");
+    fresque = await Jimp.read("../../data/data-fresque.png");
   }
   return {
     body:
@@ -31,7 +31,7 @@ async function update() {
   let max = await million.totalSupply({ wallet: FakeWallet });
   let fresque = new Jimp(2048, 512);
   for (let id = 0; id < max; id++) {
-    let filename = `./data/data-0x${id.toString(16).padStart(3, "0")}.json`;
+    let filename = `../../data/data-0x${id.toString(16).padStart(3, "0")}.json`;
     try {
       let data = JSON.parse(await fs.readFile(filename, "utf8"));
       let b64 = data.image.substring(data.image.indexOf(",") + 1);
@@ -46,7 +46,7 @@ async function update() {
       console.log(e);
     }
   }
-  fresque.write("./data/data-fresque.png");
+  fresque.write("../../data/data-fresque.png");
 
   return fresque;
 }

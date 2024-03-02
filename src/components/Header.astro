@@ -87,11 +87,12 @@ import Mint from '../components/Mint.astro';
 
 <script>
   import {
+    FREIGHTER_ID,
+    FreighterModule,
     StellarWalletsKit,
     WalletNetwork,
-    WalletType,
     ISupportedWallet,
-  } from "stellar-wallets-kit";
+  } from "@creit.tech/stellar-wallets-kit";
 
   import {publicKey} from '../keyStore';
 
@@ -107,16 +108,11 @@ import Mint from '../components/Mint.astro';
 
   const STORAGE_WALLET_KEY = "wallet";
 
-  const allowedWallets = [
-    WalletType.ALBEDO,
-    WalletType.FREIGHTER,
-    WalletType.XBULL,
-  ];
-  const SWKKit = new StellarWalletsKit({
-    network: FUTURENET_DETAILS.networkPassphrase as WalletNetwork,
-    selectedWallet: WalletType.FREIGHTER,
+  const kit = new StellarWalletsKit({
+    network: WalletNetwork.FUTURENET,
+    selectedWalletId: FREIGHTER_ID,
+    modules: [new FreighterModule()],
   })
-  SWKKit.setNetwork(FUTURENET_DETAILS.networkPassphrase as WalletNetwork);
 
   const buttonAddress = document.getElementById('button-address');
   const buttonConnect = document.getElementById('button-connect');
@@ -125,10 +121,10 @@ import Mint from '../components/Mint.astro';
 
   if (storedWallet) {
     (async () => {
-      SWKKit.setWallet(storedWallet);
-      const walletAddress = await SWKKit.getPublicKey();
+      kit.setWallet(storedWallet);
+      const walletAddress = await kit.getPublicKey();
       // Set selected wallet, network, and public key
-      await SWKKit.setNetwork(WalletNetwork.FUTURENET);
+      await kit.setNetwork(WalletNetwork.FUTURENET);
       
       publicKey.set(walletAddress)
     })()
@@ -140,17 +136,16 @@ import Mint from '../components/Mint.astro';
         publicKey.set(undefined);
         localStorage.removeItem(STORAGE_WALLET_KEY);
       } else {
-        await SWKKit.openModal({
-          allowedWallets,
+        await kit.openModal({
           onWalletSelected: async (option: ISupportedWallet) => {
             try {
-              SWKKit.setWallet(option.type);
-              const walletAddress = await SWKKit.getPublicKey();
+              kit.setWallet(option.id);
+              const walletAddress = await kit.getPublicKey();
               // Set selected wallet, network, and public key
-              await SWKKit.setNetwork(WalletNetwork.FUTURENET);
+              await kit.setNetwork(WalletNetwork.FUTURENET);
               
               publicKey.set(walletAddress)
-              localStorage.setItem(STORAGE_WALLET_KEY, option.type);
+              localStorage.setItem(STORAGE_WALLET_KEY, option.id);
             } catch (error) {
               localStorage.removeItem(STORAGE_WALLET_KEY);
               console.error(ERRORS.WALLET_CONNECTION_REJECTED)
