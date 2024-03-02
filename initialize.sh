@@ -93,23 +93,18 @@ echo "Build contracts"
 soroban contract build
 echo "Optimizing contracts"
 soroban contract optimize --wasm $MLH_CONTRACT_PATH".wasm"
-soroban contract optimize --wasm $MLH_MARKETPLACE_PATH".wasm"
+# soroban contract optimize --wasm $MLH_MARKETPLACE_PATH".wasm"
 
 # Deploys the contracts and stores the contract IDs in .soroban
 
-# The mlh contract
+# Deploy the mlh contract
 echo "Deploy the mlh contract"
 MLH_ID="$(
-  soroban contract deploy $ARGS \
+  soroban contract deploy \
+    $ARGS \
     --wasm $MLH_CONTRACT_PATH".optimized.wasm"
 )"
 echo "Contract deployed succesfully with ID: $MLH_ID"
-
-# The mlh contract hash
-MLH_HASH="$(
-	soroban contract install $ARGS \
-    --wasm $MLH_CONTRACT_PATH".optimized.wasm"
-)"
 
 # Initialize the contracts
 echo "Initializing the mlh contract"
@@ -122,9 +117,22 @@ soroban contract invoke \
 	--asset $NATIVE_ID \
 	--price 2560000000
 
+# Installing the mlh contract
+echo "Installing the mlh contract to get hash"
+MLH_HASH="$(
+	soroban contract install \
+    $ARGS \
+    --wasm $MLH_CONTRACT_PATH".optimized.wasm"
+)"
+
 # Upgrading the contracts
-# echo "Upgrading the mlh contract"
-# soroban contract invoke $ARGS --id $MLH_ID -- upgrade --wasm_hash $MLH_HASH
+echo "Upgrading the mlh contract"
+soroban contract invoke \
+  $ARGS \
+  --id $MLH_ID \
+  -- \
+  upgrade \
+  --wasm_hash $MLH_HASH
 
 # Contract total supply
 TOTAL_SUPPLY="$(soroban contract invoke $ARGS --id $MLH_ID -- total_supply)"
@@ -139,7 +147,7 @@ echo "Extending the mlh contract"
 soroban contract extend \
 	$ARGS \
 	--id $MLH_ID \
-	--ledgers-to-extend 6000000 \
+	--ledgers-to-extend 100000 \
 	--durability persistent
 
 #soroban contract invoke $ARGS --id $MLH_ID -- -h

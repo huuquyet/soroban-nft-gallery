@@ -5,7 +5,8 @@ use std::println;
 
 use super::*;
 //use crate::MillionError;
-use soroban_sdk::{testutils::Address as _, token, Address, Env};
+use soroban_sdk::{testutils::Address as _, Address, Env};
+
 #[test]
 fn init() {
     let env = Env::default();
@@ -30,7 +31,7 @@ fn mint() {
 
     let asset_admin = Address::generate(&env);
     let native_addr = env.register_stellar_asset_contract(asset_admin.clone());
-    let asset_client_admin = token::AdminClient::new(&env, &native_addr);
+    let asset_client_admin = token::StellarAssetClient::new(&env, &native_addr);
 
     let admin = Address::generate(&env);
     client.initialize(&admin, &native_addr, &2_560_000_000);
@@ -76,7 +77,7 @@ fn mint_all() {
 
     let asset_admin = Address::generate(&env);
     let native_addr = env.register_stellar_asset_contract(asset_admin.clone());
-    let asset_client_admin = token::AdminClient::new(&env, &native_addr);
+    let asset_client_admin = token::StellarAssetClient::new(&env, &native_addr);
 
     let admin = Address::generate(&env);
     client.initialize(&admin, &native_addr, &2_560_000_000);
@@ -106,7 +107,7 @@ fn mint_all() {
         .mint(&user1, &2_560_000_000);
     let result = client.mock_all_auths().try_mint(&0, &0, &user1);
 
-    //println!("{:?}", result);
+    println!("{:?}", result);
     match result {
         Err(Err(_)) => {
             // Ok

@@ -5081,12 +5081,12 @@ __metadata:
 
 "million-contract@file:../.soroban/contracts/million::locator=mlh-frontend%40workspace%3Amlh-frontend":
   version: 0.0.0
-  resolution: "million-contract@file:../.soroban/contracts/million#../.soroban/contracts/million::hash=ccede2&locator=mlh-frontend%40workspace%3Amlh-frontend"
+  resolution: "million-contract@file:../.soroban/contracts/million#../.soroban/contracts/million::hash=92da8a&locator=mlh-frontend%40workspace%3Amlh-frontend"
   dependencies:
     "@stellar/freighter-api": "npm:1.7.1"
     "@stellar/stellar-sdk": "npm:11.2.0"
     buffer: "npm:6.0.3"
-  checksum: 10c0/75ed150b7cb7323c0d22d2307f4c86c5a21f61b8dbe123be8706fddd535a31f9a9685f8129c1652ff827bf27d566d1af6a645b6d02362c58f78cb6ea377ea7e3
+  checksum: 10c0/019bef9c02e813ad700d4e47054acbef970a615ad595ae8372b38cffebe5841bf49b47d7fdfbd78a2badaf42a8f346220a0170396c3dfea7e924ecb7e65de29d
   languageName: node
   linkType: hard
 

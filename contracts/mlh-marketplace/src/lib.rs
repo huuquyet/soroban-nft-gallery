@@ -55,8 +55,7 @@ pub struct OrderBook {
 pub const CONTRACT: Symbol = symbol_short!("CONTRACT");
 pub const ORDER_BOOK: Symbol = symbol_short!("BOOK");
 
-const MIN_BUMP: u32 = 600_000;
-const MAX_BUMP: u32 = 6_000_000;
+const MAX_BUMP: u32 = 100_000;
 
 #[contract]
 pub struct MarketPlace;
@@ -71,16 +70,9 @@ impl MarketPlace {
             panic!("Already initialized");
         }
         env.storage().instance().set(&CONTRACT, &contract);
-        env.storage().instance().extend_ttl(MIN_BUMP, MAX_BUMP);
+        env.storage().instance().extend_ttl(MAX_BUMP, MAX_BUMP);
     }
-    pub fn sell(
-        env: Env,
-        nft: Nft,
-        seller: Address,
-        owner: Address,
-        price: Price,
-        expiration_ledger: u32,
-    ) {
+    pub fn sell(env: Env, nft: Nft, seller: Address, owner: Address, price: Price, bump: u32) {
         seller.require_auth();
 
         if price.amount <= 0 {
@@ -100,7 +92,7 @@ impl MarketPlace {
             &seller,
             &Some(env.current_contract_address()),
             &nft.token_id,
-            &expiration_ledger,
+            &bump,
         );
 
         // Update order book, replace previously set offer if exists
@@ -111,18 +103,12 @@ impl MarketPlace {
             .unwrap_or_else(|| Map::new(&env));
         order_book.set(nft.clone(), owner);
         env.storage().temporary().set(&ORDER_BOOK, &order_book);
-        env.storage().temporary().extend_ttl(
-            &ORDER_BOOK,
-            expiration_ledger - env.ledger().sequence(),
-            expiration_ledger,
-        );
+        env.storage()
+            .temporary()
+            .extend_ttl(&ORDER_BOOK, bump, bump);
 
         env.storage().temporary().set(&nft, &price);
-        env.storage().temporary().extend_ttl(
-            &nft,
-            expiration_ledger - env.ledger().sequence(),
-            expiration_ledger,
-        );
+        env.storage().temporary().extend_ttl(&nft, bump, bump);
     }
     pub fn buy(env: Env, buyer: Address, nft: Nft) {
         buyer.require_auth();

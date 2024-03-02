@@ -25,8 +25,7 @@ export async function get({ params, request }) {
     data = JSON.parse(await fs.readFile(filename, "utf8"));
   } catch (e) {
     let xy = await million.coords(
-      { token_id: parseInt(id) },
-      { wallet: FakeWallet }
+      { token_id: 0 }
     );
     data.coords = xy;
     fs.writeFile(filename, JSON.stringify(data));

@@ -38,7 +38,9 @@ fn simpl_test() {
     assert_eq!(client.token_of_owner_by_index(&user1, &1), 3);
     assert_eq!(client.token_of_owner_by_index(&user2, &0), 2);
 
-    client.transfer_from(&user1, &user1, &user2, &3);
+    client
+        .mock_all_auths()
+        .transfer_from(&user1, &user1, &user2, &3);
 
     assert_eq!(client.balance_of(&user1), 1);
     assert_eq!(client.balance_of(&user2), 2);
@@ -47,7 +49,7 @@ fn simpl_test() {
     assert_eq!(client.token_of_owner_by_index(&user2, &1), 3);
     assert_eq!(client.token_of_owner_by_index(&user2, &0), 2);
 
-    client.burn(&user2, &2);
+    client.mock_all_auths().burn(&user2, &2);
 
     assert_eq!(client.balance_of(&user1), 1);
     assert_eq!(client.balance_of(&user2), 1);
