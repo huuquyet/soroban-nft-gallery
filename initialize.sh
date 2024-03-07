@@ -17,7 +17,7 @@ elif command -v soroban &> /dev/null; then
   echo "Using soroban cli"
 else
   echo "Soroban not found, install soroban cli"
-  cargo install_soroban
+  cargo install --locked --version 20.3.1 soroban-cli --debug --features opt
 fi
 
 if [[ "$SOROBAN_RPC_HOST" == "" ]]; then
@@ -38,6 +38,7 @@ fi
 
 case "$1" in
 futurenet)
+  echo "Using Futurenet network with RPC URL: $SOROBAN_RPC_URL"
   SOROBAN_NETWORK_PASSPHRASE="Test SDF Future Network ; October 2022"
   ;;
 testnet)
@@ -45,6 +46,7 @@ testnet)
   SOROBAN_NETWORK_PASSPHRASE="Test SDF Network ; September 2015"
   ;;
 standalone)
+  echo "Using standalone network with RPC URL: $SOROBAN_RPC_URL"
   SOROBAN_NETWORK_PASSPHRASE="Standalone Network ; February 2017"
   ;;
 *)
@@ -61,23 +63,17 @@ soroban config network add \
   --rpc-url "$SOROBAN_RPC_URL" \
   --network-passphrase "$SOROBAN_NETWORK_PASSPHRASE" "$NETWORK"
 
-#echo "Add $NETWORK to shared config"
-#echo "{ \"network\": \"$NETWORK\", \"rpcUrl\": \"$SOROBAN_RPC_URL\", \"networkPassphrase\": \"$SOROBAN_NETWORK_PASSPHRASE\" }" > ./src/shared/config.json
+# echo "Add $NETWORK to shared config"
+# echo "{ \"network\": \"$NETWORK\", \"rpcUrl\": \"$SOROBAN_RPC_URL\", \"networkPassphrase\": \"$SOROBAN_NETWORK_PASSPHRASE\" }" > ./src/shared/config.json
 
 if !(soroban config identity ls | grep token-admin 2>&1 >/dev/null); then
   echo "Create the token-admin identity"
   soroban config identity generate token-admin --network $NETWORK
 fi
 
-if !(soroban config identity ls | grep user 2>&1 >/dev/null); then
-  echo "Create the user identity"
-  soroban config identity generate user --network $NETWORK
-fi
-
 # This will fail if the account already exists, but it'll still be fine.
 echo "Fund token-admin & user accounts from friendbot"
 soroban config identity fund token-admin --network $NETWORK
-soroban config identity fund user --network $NETWORK
 
 ARGS="--network $NETWORK --source token-admin"
 
@@ -139,8 +135,8 @@ TOTAL_SUPPLY="$(soroban contract invoke $ARGS --id $MLH_ID -- total_supply)"
 echo "Total supply of mlh contract is $TOTAL_SUPPLY"
 
 # Minting to token admin
-# echo "Minting to user"
-# soroban contract invoke --network $NETWORK --source user --id $MLH_ID -- mint --to user --x 0 --y 0
+# echo "Minting to token admin"
+# soroban contract invoke $ARGS --id $MLH_ID -- mint --to token-admin --x 0 --y 0
 
 # Extending the contracts
 echo "Extending the mlh contract"

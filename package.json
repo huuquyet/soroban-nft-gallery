@@ -19,18 +19,18 @@
   "dependencies": {
     "@astrojs/node": "^7.0.4",
     "@creit.tech/stellar-wallets-kit": "^0.6.1",
-    "@nanostores/preact": "^0.5.0",
+    "@nanostores/preact": "^0.5.1",
     "@stellar/freighter-api": "^1.7.1",
-    "@stellar/stellar-sdk": "^11.1.0",
-    "astro": "^4.1.1",
-    "axios": "^1.6.5",
-    "jimp": "^0.22.10",
+    "@stellar/stellar-sdk": "^11.2.2",
+    "astro": "^4.4.13",
+    "axios": "^1.6.7",
+    "jimp": "^0.22.12",
     "million-contract": "./.soroban/contracts/million",
-    "nanostores": "^0.9.5"
+    "nanostores": "^0.10.0"
   },
   "devDependencies": {
     "preact": "^10.19.6",
-    "typescript": "^5.3.3"
+    "typescript": "^5.4.2"
   },
   "packageManager": "yarn@4.1.0"
 }
