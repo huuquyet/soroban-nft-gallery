@@ -1,4 +1,4 @@
-import { atom } from "nanostores";
+import { atom } from 'nanostores'
 
-export const publicKey = atom(undefined);
-export const x = atom(0);
+export const publicKey = atom(undefined)
+export const x = atom(0)

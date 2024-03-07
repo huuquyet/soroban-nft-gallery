@@ -1,62 +1,61 @@
-const fs = require('fs');
-const axios = require('axios');
+const fs = require('fs')
+const axios = require('axios')
 
 //TODO: Hide the link to the environment variables after testing phase (local and repository)
-const challengeApiUrl = 'https://soroban-dapps-challenge-wrangler.julian-martinez.workers.dev';
-const challengeId = 4;
+const challengeApiUrl = 'https://soroban-dapps-challenge-wrangler.julian-martinez.workers.dev'
+const challengeId = 4
 
 const stellarHorizonUrls = [
-  "https://horizon-testnet.stellar.org",
-  "https://horizon-futurenet.stellar.org"
+  'https://horizon-testnet.stellar.org',
+  'https://horizon-futurenet.stellar.org',
 ]
-const stellarExplorerUrls = [
-  "https://testnet.steexp.com",
-  "https://futurenet.steexp.com"
-]
+const stellarExplorerUrls = ['https://testnet.steexp.com', 'https://futurenet.steexp.com']
 
 /**
  * Read the data from the output file and update
  * the user progress on data validation.
  */
 fs.readFile('./challenge/output.txt', async (err, inputData) => {
-  if (err) throw err;
+  if (err) throw err
 
-  const publicKeyData = inputData.toString();
-  const publicKey = publicKeyData.substring(publicKeyData.indexOf(':') + 1).trim();
+  const publicKeyData = inputData.toString()
+  const publicKey = publicKeyData.substring(publicKeyData.indexOf(':') + 1).trim()
 
-  console.log(publicKeyData);
+  console.log(publicKeyData)
 
-  const user = await getUser(publicKey);
+  const user = await getUser(publicKey)
   if (!user) {
-    throw new Error("User is not found! Check the public key!");
+    throw new Error('User is not found! Check the public key!')
   }
 
-  const isPublicKeyValid = await validatePublicKey(publicKey);
+  const isPublicKeyValid = await validatePublicKey(publicKey)
   if (!isPublicKeyValid) {
-    throw new Error("Public key validation failed! Check the public key!");
+    throw new Error('Public key validation failed! Check the public key!')
   }
 
-  const challenge = getCurrentChallenge(user);
+  const challenge = getCurrentChallenge(user)
   if (!challenge) {
-    throw new Error("Challenge with progress is not found!");
+    throw new Error('Challenge with progress is not found!')
   }
 
-  const isContractIdValid = await validateContractId(challenge.contractId);
+  const isContractIdValid = await validateContractId(challenge.contractId)
   if (!isContractIdValid) {
-    throw new Error("Contract validation failed! Check the contract id!");
+    throw new Error('Contract validation failed! Check the contract id!')
   }
 
-  const isProductionLinkValid = await validateProductionLink(challenge.url);
+  const isProductionLinkValid = await validateProductionLink(challenge.url)
   if (!isProductionLinkValid) {
-    throw new Error("Production link validation failed! Check the production link!");
+    throw new Error('Production link validation failed! Check the production link!')
   }
 
-  const isTvlValid = validateTvl(challenge.totalValueLocked);
+  const isTvlValid = validateTvl(challenge.totalValueLocked)
   if (!isTvlValid) {
-    throw new Error("Total value locked validation failed! Total value locked must be greater than 0!");
+    throw new Error(
+      'Total value locked validation failed! Total value locked must be greater than 0!'
+    )
   }
 
-  await sendCompleteChallengeRequest(publicKey);
+  await sendCompleteChallengeRequest(publicKey)
 })
 
 /**
@@ -67,11 +66,11 @@ fs.readFile('./challenge/output.txt', async (err, inputData) => {
  */
 async function getUser(publicKey) {
   try {
-    const response = await axios.get(`${challengeApiUrl}/users?userId=${publicKey}`);
-    return response.data;
+    const response = await axios.get(`${challengeApiUrl}/users?userId=${publicKey}`)
+    return response.data
   } catch (error) {
-    console.error(`An error occurred while retrieving user ${publicKey}: ${error.message}`);
-    return null;
+    console.error(`An error occurred while retrieving user ${publicKey}: ${error.message}`)
+    return null
   }
 }
 
@@ -82,10 +81,9 @@ async function getUser(publicKey) {
  * @returns {any} Challenge with progress.
  */
 function getCurrentChallenge(user) {
-  const challenges = user.challenges || [];
-  return challenges.find(challenge => challenge.id === challengeId) || null;
+  const challenges = user.challenges || []
+  return challenges.find((challenge) => challenge.id === challengeId) || null
 }
-
 
 /**
  * Public key validation.
@@ -97,15 +95,17 @@ function getCurrentChallenge(user) {
 async function validatePublicKey(publicKey) {
   for (const horizonUrl of stellarHorizonUrls) {
     try {
-      await axios.get(`${horizonUrl}/accounts/${publicKey}`);
-      return true;
+      await axios.get(`${horizonUrl}/accounts/${publicKey}`)
+      return true
     } catch (error) {
-      console.error(`An error occurred while validating public key ${publicKey} on network ${horizonUrl}: ${error.message}`);
+      console.error(
+        `An error occurred while validating public key ${publicKey} on network ${horizonUrl}: ${error.message}`
+      )
     }
   }
 
-  console.log(`Public key ${publicKey} does not exist`);
-  return false;
+  console.log(`Public key ${publicKey} does not exist`)
+  return false
 }
 
 /**
@@ -117,23 +117,27 @@ async function validatePublicKey(publicKey) {
  */
 async function validateContractId(contractId) {
   if (!contractId) {
-    return false;
+    return false
   }
 
-  let isContractIdValid = contractId.length === 56;
+  const isContractIdValid = contractId.length === 56
 
   for (const explorerUrl of stellarExplorerUrls) {
     try {
-      const response = await axios.get(`${explorerUrl}/contract/${contractId}?_data=routes%2Fcontract.%24contractId`);
+      const response = await axios.get(
+        `${explorerUrl}/contract/${contractId}?_data=routes%2Fcontract.%24contractId`
+      )
       if (response.data.contractDetails) {
-        return isContractIdValid;
+        return isContractIdValid
       }
     } catch (error) {
-      console.error(`An error occurred while validating contract ID on Stellar Explorer ${explorerUrl}: ${error.message}`);
+      console.error(
+        `An error occurred while validating contract ID on Stellar Explorer ${explorerUrl}: ${error.message}`
+      )
     }
   }
 
-  return false;
+  return false
 }
 
 /**
@@ -145,11 +149,11 @@ async function validateContractId(contractId) {
  */
 async function validateProductionLink(productionLink) {
   if (!productionLink) {
-    return false;
+    return false
   }
 
-  const isProductionLinkValid = await isLinkValid(productionLink);
-  return productionLink.includes("vercel.app") && isProductionLinkValid;
+  const isProductionLinkValid = await isLinkValid(productionLink)
+  return productionLink.includes('vercel.app') && isProductionLinkValid
 }
 
 /**
@@ -160,7 +164,7 @@ async function validateProductionLink(productionLink) {
  * @returns {boolean} True if total value locked is greater than 0.
  */
 function validateTvl(totalValueLocked) {
-  return totalValueLocked && totalValueLocked > 0;
+  return totalValueLocked && totalValueLocked > 0
 }
 
 /**
@@ -169,16 +173,16 @@ function validateTvl(totalValueLocked) {
  * @param {string} publicKey The user's public key (id).
  */
 async function sendCompleteChallengeRequest(publicKey) {
-  console.log(`The complete challenge request is sending to the user=${publicKey}`);
+  console.log(`The complete challenge request is sending to the user=${publicKey}`)
   await axios({
     method: 'put',
     url: challengeApiUrl,
     data: {
       userId: `${publicKey}:${challengeId}`,
-      isCompleted: true
-    }
-  });
-  console.log("The request was sent!");
+      isCompleted: true,
+    },
+  })
+  console.log('The request was sent!')
 }
 
 /**
@@ -189,10 +193,10 @@ async function sendCompleteChallengeRequest(publicKey) {
  */
 async function isLinkValid(link) {
   try {
-    await axios.head(link);
-    return true;
+    await axios.head(link)
+    return true
   } catch (error) {
-    console.error(`Error occurred while validating link ${link}: ${error.message}`);
-    return false;
+    console.error(`Error occurred while validating link ${link}: ${error.message}`)
+    return false
   }
 }
