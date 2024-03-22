@@ -2716,12 +2716,12 @@ __metadata:
   linkType: hard
 
 "follow-redirects@npm:^1.15.4":
-  version: 1.15.5
-  resolution: "follow-redirects@npm:1.15.5"
+  version: 1.15.6
+  resolution: "follow-redirects@npm:1.15.6"
   peerDependenciesMeta:
     debug:
       optional: true
-  checksum: 10c0/418d71688ceaf109dfd6f85f747a0c75de30afe43a294caa211def77f02ef19865b547dfb73fde82b751e1cc507c06c754120b848fe5a7400b0a669766df7615
+  checksum: 10c0/9ff767f0d7be6aa6870c82ac79cf0368cd73e01bbc00e9eb1c2a16fbb198ec105e3c9b6628bb98e9f3ac66fe29a957b9645bcb9a490bb7aa0d35f908b6b85071
   languageName: node
   linkType: hard
 
@@ -4142,12 +4142,12 @@ __metadata:
 
 "million-contract@file:./.soroban/contracts/million::locator=soroban-nft-gallery%40workspace%3A.":
   version: 0.0.0
-  resolution: "million-contract@file:./.soroban/contracts/million#./.soroban/contracts/million::hash=b54eb3&locator=soroban-nft-gallery%40workspace%3A."
+  resolution: "million-contract@file:./.soroban/contracts/million#./.soroban/contracts/million::hash=335067&locator=soroban-nft-gallery%40workspace%3A."
   dependencies:
     "@stellar/freighter-api": "npm:1.7.1"
     "@stellar/stellar-sdk": "npm:11.2.0"
     buffer: "npm:6.0.3"
-  checksum: 10c0/5b5fb7bb1b21150aebbd94640c96fe3d6e4aefe49ef230b64c9000e33a905bd332b73b338994ba3e5cfba469970a712620bbdde9afd1e584e6457703919a1146
+  checksum: 10c0/41aedc775d4349187bd5e86760cfab7a4c3e7d6d6ce9e9d145b683d4a5f9442ae38a4b1ce4f7c682c9b09c9aa7edb5687c2fb20b8bfa0972ce1667159ed1ef95
   languageName: node
   linkType: hard
 
