@@ -23,7 +23,7 @@
     "@stellar/freighter-api": "^1.7.1",
     "@stellar/stellar-sdk": "^11.2.2",
     "astro": "^4.16.18",
-    "axios": "^1.7.8",
+    "axios": "^1.8.2",
     "jimp": "^0.22.12",
     "million-contract": "./.soroban/contracts/million",
     "nanostores": "^0.10.0"
