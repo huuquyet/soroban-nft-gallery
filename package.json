@@ -22,8 +22,8 @@
     "@nanostores/preact": "^0.5.1",
     "@stellar/freighter-api": "^1.7.1",
     "@stellar/stellar-sdk": "^11.2.2",
-    "astro": "^5.14.3",
-    "axios": "^1.12.2",
+    "astro": "^5.15.6",
+    "axios": "^1.13.0",
     "jimp": "^0.22.12",
     "million-contract": "./.soroban/contracts/million",
     "nanostores": "^0.10.0"
