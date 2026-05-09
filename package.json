@@ -17,13 +17,13 @@
     "vscode": "yarn dlx @yarnpkg/sdks vscode"
   },
   "dependencies": {
-    "@astrojs/node": "^10.0.0",
+    "@astrojs/node": "^10.0.5",
     "@creit.tech/stellar-wallets-kit": "^0.6.1",
     "@nanostores/preact": "^0.5.1",
     "@stellar/freighter-api": "^1.7.1",
     "@stellar/stellar-sdk": "^11.2.2",
-    "astro": "^5.18.1",
-    "axios": "^1.15.0",
+    "astro": "^6.1.6",
+    "axios": "^1.15.1",
     "jimp": "^0.22.12",
     "million-contract": "./.soroban/contracts/million",
     "nanostores": "^0.10.0"
